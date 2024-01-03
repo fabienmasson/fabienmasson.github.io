@@ -15,6 +15,7 @@
     <social name="Github" url="https://github.com/fabienmasson"/>
     <social name="Linkedin" url="https://www.linkedin.com/in/fabien-masson-2122122b/?originalSubdomain=fr"/>
   </contact>
+
   <education>
     <school>Ecole Nationale Supérieure d'Ingénieurs de Constructions Aéronautiques</school>
     <city>Toulouse</city>
@@ -29,13 +30,25 @@
     <title>Respnsable projet et support EDI/numérique</title>
     <start>2019</start>
     <mission>
-      Dilifac
+      <title>Opérateur de dématérialisation du secteur du livre - Dilifac</title>
+      <detail>
+          Maîtrise d'ouvrage, déploiements et support.
+      </detail>
     </mission>
     <mission>
-      Projet Transport
+      <title>Projet Transport en île de France</title>
+      <detail>
+        Informatisation du flux retour.
+        Centralisation des suivis transport.
+      </detail>
     </mission>
     <mission>
-      Numérique
+      <title>Lecture numérique</title>
+      <detail>
+        Support des plateformes pour le grand public (HUB) et pour les bibliothèques de prêts (PNB).
+        Evangélisation des bibliothèques publiques de prêts.
+        Support de l'application mobile interne de lecture de livres numériques.
+      </detail>
     </mission>
 
   </work>
@@ -47,35 +60,47 @@
     <start>2003</start>
     <end>2018</end>
     <mission>
-      Entrepôt décisionnel :
-      Choix de solution, conception et réalisation de l'entrepôt décisionnel du groupe.
-      Refonte des rapports sous BO XI, formation des utilisateurs.
+      <title>Entrepôt décisionnel</title>
+      <detail>
+        Choix de solution, conception et réalisation de l'entrepôt décisionnel du groupe.
+        Refonte des rapports sous BO XI, formation des utilisateurs.
+      </detail>
     </mission>
     <mission>
-      Réferentiel produit :
-      Conception et développement de l'application en ASP.Net MVC.
-      Conception et développement des flux MS Biztalk.
+      <title>Réferentiel produit</title>
+      <detail>
+        Conception et développement de l'application en ASP.Net MVC.
+        Conception et développement des flux MS Biztalk.
+      </detail>
     </mission>
     <mission>
-      Intégration ERP :
-      Spécification et développement des flux MS Biztalk. 
-      Coordination technique.
+      <title>Intégration ERP</title>
+      <detail>
+        Spécification et développement des flux MS Biztalk. 
+        Coordination technique.
+      </detail>
     </mission>
     <mission>
-      Transfert d'activité :
-      Spécification et mise en place de flux temporaires (ventes, stocks, référentiels).
-      Spécification et mise en place de nouveaux flux (ventes, stocks).
-      Encadrement de prestataires.
+      <title>Transfert d'activité</title>
+      <detail>
+        Spécification et mise en place de flux temporaires (ventes, stocks, référentiels).
+        Spécification et mise en place de nouveaux flux (ventes, stocks).
+        Encadrement de prestataires.
+      </detail>
     </mission>
     <mission>
-      Gestion du portail B2B :
-      Environ 750 utilisateurs actifs quotidiennement.
-      Maintenance évolutive, support et formation.
+      <title>Gestion du portail B2B</title>
+      <detail>
+        Environ 750 utilisateurs actifs quotidiennement.
+        Maintenance évolutive, support et formation.
+      </detail>
     </mission>
     <mission>
-      Informatisation des forces de ventes :
-      Maintenance et modernisation de l'application nomade de prise de commandes.
-      Formation, réalisation de reportings opérationnels.
+      <title>Informatisation des forces de ventes</title>
+      <detail>
+        Maintenance et modernisation de l'application nomade de prise de commandes.
+        Formation, réalisation de reportings opérationnels.
+      </detail>
     </mission>
 
   </work>
@@ -87,26 +112,36 @@
     <start>1998</start>
     <end>2003</end>
     <mission>
-      Cegetel : 
-      Support niveau 3 pour le Réseau Santé Sociale et les portails internet. 
-      Suivi du projet de gestion des sources et des déploiements avec CVS. Animation des formations à CVS.
+      <title>Cegetel</title>
+      <detail>
+        Support niveau 3 pour le Réseau Santé Sociale et les portails internet. 
+        Suivi du projet de gestion des sources et des déploiements avec CVS. Animation des formations à CVS.
+      </detail>
     </mission>
     <mission>
-      Editions du Seuil : 
-      Réalisation d'une base de données décisionnelle, et d'un portail internet de consultation en B2B.
+      <title>Editions du Seuil</title>
+      <detail>
+            Réalisation d'une base de données décisionnelle, et d'un portail internet de consultation en B2B.
+      </detail>
     </mission>
     <mission>
-      Direction générale des finances : 
-      Tutorat d'une équipe interne de 4 développeurs, aux outils de développements Oracle. 
-      Spécification et réalisation d'applications.
+      <title>Direction générale des finances</title>
+      <detail>
+        Tutorat d'une équipe interne de 4 développeurs, aux outils de développements Oracle. 
+        Spécification et réalisation d'applications.
+      </detail>
     </mission>
     <mission>
-      Renault : 
-      Migration d'application sous Oracle Forms et Oracle Reports.
+      <title>Renault</title>
+      <detail>
+          Migration d'application sous Oracle Forms et Oracle Reports.
+      </detail>
     </mission>
     <mission>
-      Groupe d'Etude et de Contrôle des Variétés et des Semences : 
-      Maintenance corrective et évolutive.
+      <title>Groupe d'Etude et de Contrôle des Variétés et des Semences</title>
+      <detail>
+          Maintenance corrective et évolutive.
+      </detail>
     </mission>
 
   </work>
@@ -118,10 +153,54 @@
     <start>1996</start>
     <end>1998</end>
     <mission>
-      Réalisation de plusieurs missions pour la banque BNP :
-      Tierce maintenance applicative d'applications de reporting pour les centres de profits. 
-      Spécification d'une application de statistique pour le passage à l'Euro. 
-      Animation du points de suivi avec le client.
+      <title>Réalisation de plusieurs missions pour la banque BNP</title>
+      <detail>
+        Tierce maintenance applicative d'applications de reporting pour les centres de profits. 
+        Spécification d'une application de statistique pour le passage à l'Euro. 
+        Animation du points de suivi avec le client.
+      <detail>
     </mission>
   </work>
+
+  <skill>Javascript</skill>
+  <skill>Typescript</skill>
+  <skill>CSS</skill>
+  <skill>Svelte</skill>
+  <skill>Vue/Nuxt</skill>
+  <skill>go</skill>
+  <skill>C#</skill>
+  <skill>ASP.Net MVC</skill>
+  <skill>SQL</skill>
+  <skill>Docker</skill>
+
+  <project>
+    <title>Checkitoo</title>
+    <tech>java</tech>
+    <tech>scraping</tech>
+    <description>
+    Conception, developpement et administration d'un service de veille et de contrôle des principales librairies en lignes.
+    </description>
+  </project>
+
+  <project>
+    <title>Lecture-sur-mesure</title>
+    <tech>go</tech>
+    <tech>xslt</tech>
+    <tech>LaTeX</tech>
+    <tech>docker</tech>
+    <tech>wordpress<tech>
+    <description>
+    Service de personnalisation de personnalisation et d'impression de livre.
+    </description>
+  </project>
+
+  <project>
+    <title>Horizons Sahel</title>
+    <tech>Wordpress</tech>
+    <description>
+    Création du site web de l'ONG Horizon Sahel
+    </description>
+  </project>
+
+
 </cv>
