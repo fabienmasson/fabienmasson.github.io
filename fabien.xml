@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cv>
+  <name>Fabien Masson</name>
+  <initials>FM</initials>
+  <location>Paris, France</location>
+  <locationLink>https://www.google.com/maps/place/Paris</locationLink>
+  <about>Développer fullstack polivalent</about>
+  <summary>As a Full Stack Engineer, I have successfully taken multiple products from 0 to 1. I lead teams effectively, ensuring an environment where people can do their best work. Currently, I work mostly with TypeScript, React, Node.js, and GraphQL. I have over 8 years of experience in working remotely with companies all around the world.</summary>
+  <avartarUrl>https://avatars.githubusercontent.com/u/8004483?s=400&u=7014329651664a0dbc42d28562a6519972b682b7&v=4</avatarUrl>
+  <personalWebSite>https://blog.trankilou.fr</personalWebSite>
+
+  <contact>
+    <email>masson.fabien@gmail.com</email>
+    <tel>0660897305</tel>
+    <social name="Github" url="https://github.com/fabienmasson"/>
+    <social name="Linkedin" url="https://www.linkedin.com/in/fabien-masson-2122122b/?originalSubdomain=fr"/>
+  </contact>
+  <education>
+    <school>Ecole Nationale Supérieure d'Ingénieurs de Constructions Aéronautiques</school>
+    <city>Toulouse</city>
+    <degree>Ingénieur</degree>
+    <start>1993</start>
+    <end>1996</end>
+  </education>
+
+  <work>
+    <company>Unilog</company>
+    <logo>UNILOG.jpg</logo>
+    <title>Ingénieur réalisation</title>
+    <start>1996</start>
+    <end>1998</end>
+    <description>
+      Réalisation de plusieurs missions pour la banque BNP
+    </description>
+    <mission>
+      Tierce maintenance applicative d'applications de reporting pour les centres de profits. 
+      Spécification d'une application de statistique pour le passage à l'Euro. 
+      Animation du points de suivi avec le client.
+    </mission>
+  </work>
+
+  <work>
+    <company>Groupe La Martinière</company>
+    <logo>UNILOG.jpg</logo>
+    <title>Chef de projets / Directeur technique</title>
+    <start>2003</start>
+    <end>2018</end>
+    <description>
+      Réalisation de plusieurs missions pour la banque BNP : 
+      Tierce maintenance applicative d'applications de reporting pour les centres de profits. 
+      Spécification d'une application de statistique pour le passage à l'Euro. 
+      Animation du points de suivi avec le client.
+    </mission>
+  </work>
+
+  <work>
+    <company>CMG</company>
+    <logo>CMG.jpg</logo>
+    <title>Ingénieur réalisation</title>
+    <start>1998</start>
+    <end>2003</end>
+    <mission>
+      Cegetel : 
+      Support niveau 3 pour le Réseau Santé Sociale et les portails internet. 
+      Suivi du projet de gestion des sources et des déploiements avec CVS. Animation des formations à CVS.
+    </mission>
+    <mission>
+      Editions du Seuil : 
+      Réalisation d'une base de données décisionnelle, et d'un portail internet de consultation en B2B.
+    </mission>
+    <mission>
+      Direction générale des finances : 
+      Tutorat d'une équipe interne de 4 développeurs, aux outils de développements Oracle. 
+      Spécification et réalisation d'applications.
+    </mission>
+    <mission>
+      Renault : 
+      Migration d'application sous Oracle Forms et Oracle Reports.
+    </mission>
+    <mission>
+      Groupe d'Etude et de Contrôle des Variétés et des Semences : 
+      Maintenance corrective et évolutive.
+    </mission>
+
+  </work>
+
+  <work>
+    <company>Unilog</company>
+    <logo>UNILOG.jpg</logo>
+    <title>Ingénieur réalisation</title>
+    <start>1996</start>
+    <end>1998</end>
+    <mission>
+      Réalisation de plusieurs missions pour la banque BNP :
+      Tierce maintenance applicative d'applications de reporting pour les centres de profits. 
+      Spécification d'une application de statistique pour le passage à l'Euro. 
+      Animation du points de suivi avec le client.
+    </mission>
+  </work>
+</cv>
