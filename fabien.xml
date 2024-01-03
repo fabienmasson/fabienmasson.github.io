@@ -11,7 +11,7 @@
 
   <contact>
     <email>masson.fabien@gmail.com</email>
-    <tel>0660897305</tel>
+    <telephone>0660897305</telephone>
     <social name="Github" url="https://github.com/fabienmasson"/>
     <social name="Linkedin" url="https://www.linkedin.com/in/fabien-masson-2122122b/?originalSubdomain=fr"/>
   </contact>
@@ -24,33 +24,60 @@
   </education>
 
   <work>
-    <company>Unilog</company>
-    <logo>UNILOG.jpg</logo>
-    <title>Ingénieur réalisation</title>
-    <start>1996</start>
-    <end>1998</end>
-    <description>
-      Réalisation de plusieurs missions pour la banque BNP
-    </description>
+    <company>Dilicom</company>
+    <logo>DILICOM.jpg</logo>
+    <title>Respnsable projet et support EDI/numérique</title>
+    <start>2019</start>
     <mission>
-      Tierce maintenance applicative d'applications de reporting pour les centres de profits. 
-      Spécification d'une application de statistique pour le passage à l'Euro. 
-      Animation du points de suivi avec le client.
+      Dilifac
     </mission>
+    <mission>
+      Projet Transport
+    </mission>
+    <mission>
+      Numérique
+    </mission>
+
   </work>
 
   <work>
     <company>Groupe La Martinière</company>
-    <logo>UNILOG.jpg</logo>
+    <logo>LMG.jpg</logo>
     <title>Chef de projets / Directeur technique</title>
     <start>2003</start>
     <end>2018</end>
-    <description>
-      Réalisation de plusieurs missions pour la banque BNP : 
-      Tierce maintenance applicative d'applications de reporting pour les centres de profits. 
-      Spécification d'une application de statistique pour le passage à l'Euro. 
-      Animation du points de suivi avec le client.
+    <mission>
+      Entrepôt décisionnel :
+      Choix de solution, conception et réalisation de l'entrepôt décisionnel du groupe.
+      Refonte des rapports sous BO XI, formation des utilisateurs.
     </mission>
+    <mission>
+      Réferentiel produit :
+      Conception et développement de l'application en ASP.Net MVC.
+      Conception et développement des flux MS Biztalk.
+    </mission>
+    <mission>
+      Intégration ERP :
+      Spécification et développement des flux MS Biztalk. 
+      Coordination technique.
+    </mission>
+    <mission>
+      Transfert d'activité :
+      Spécification et mise en place de flux temporaires (ventes, stocks, référentiels).
+      Spécification et mise en place de nouveaux flux (ventes, stocks).
+      Encadrement de prestataires.
+    </mission>
+    <mission>
+      Gestion du portail B2B :
+      Environ 750 utilisateurs actifs quotidiennement.
+      Maintenance évolutive, support et formation.
+    </mission>
+    <mission>
+      Informatisation des forces de ventes :
+      Maintenance et modernisation de l'application nomade de prise de commandes.
+      Formation, réalisation de reportings opérationnels.
+    </mission>
+
   </work>
 
   <work>
