@@ -1,177 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="cv.xsl"?>
 <cv>
   <name>Fabien Masson</name>
   <initials>FM</initials>
   <location>Paris, France</location>
   <locationLink>https://www.google.com/maps/place/Paris</locationLink>
-  <about>Développer fullstack polivalent</about>
-  <summary>As a Full Stack Engineer, I have successfully taken multiple products from 0 to 1. I lead teams effectively, ensuring an environment where people can do their best work. Currently, I work mostly with TypeScript, React, Node.js, and GraphQL. I have over 8 years of experience in working remotely with companies all around the world.</summary>
-  <avartarUrl>https://avatars.githubusercontent.com/u/8004483?s=400&u=7014329651664a0dbc42d28562a6519972b682b7&v=4</avatarUrl>
+  <summary>Développer fullstack polivalent</summary>
+  <about>As a Full Stack Engineer, I have successfully taken multiple products from 0 to 1. I lead teams effectively, ensuring an environment where people can do their best work. Currently, I work mostly with TypeScript, React, Node.js, and GraphQL. I have over 8 years of experience in working remotely with companies all around the world.</about>
+  <avatarUrl>https://avatars.githubusercontent.com/u/8004483?s=400&amp;u=7014329651664a0dbc42d28562a6519972b682b7&amp;v=4</avatarUrl>
   <personalWebSite>https://blog.trankilou.fr</personalWebSite>
 
   <contact>
     <email>masson.fabien@gmail.com</email>
-    <telephone>0660897305</telephone>
-    <social name="Github" url="https://github.com/fabienmasson"/>
-    <social name="Linkedin" url="https://www.linkedin.com/in/fabien-masson-2122122b/?originalSubdomain=fr"/>
+    <telephone>+33 660897305</telephone>
+    <social name="github" url="https://github.com/fabienmasson"/>
+    <social name="linkedin" url="https://www.linkedin.com/in/fabien-masson-2122122b/?originalSubdomain=fr"/>
   </contact>
 
+
+
   <education>
-    <school>Ecole Nationale Supérieure d'Ingénieurs de Constructions Aéronautiques</school>
+    <school>ENSICA</school>
     <city>Toulouse</city>
-    <degree>Ingénieur</degree>
+    <degree>Ingénieur en constructions aéronautiques</degree>
     <start>1993</start>
     <end>1996</end>
   </education>
 
+  <education>
+    <school>Lycée Descartes</school>
+    <city>Tours</city>
+    <degree>Mathématiques spérieures et spéciales P'</degree>
+    <start>1991</start>
+    <end>1993</end>
+  </education>
+
+    <education>
+    <school>Formations en entreprise</school>
+    <degree>C#, ASP.Net MVC</degree>
+    <degree>Microsoft Biztalk 2009</degree>
+    <degree>Business Objects 4.2 Webi &amp; IDT</degree>
+    <degree>Scrum</degree>
+  </education>
+
+  <education>
+    <school>Formations en ligne</school>
+    <degree 
+      certification="COURSERA septembre 2020" 
+      link="https://coursera.org/share/0ea7f69f884922d2c112b313d9d0c664">
+      Natural Language Processing with Classification and Vector Spaces
+    </degree>
+    <degree 
+      certification="COURSERA janvier 2019" 
+      link="https://www.coursera.org/account/accomplishments/verify/D5FPLQPMNFBF">
+      Convolution Neural Networks
+    </degree>
+    <degree 
+      certification="COURSERA janvier 2019" 
+      link="https://www.coursera.org/account/accomplishments/verify/HE5R9WKDTRR8">
+      Sequence Models
+    </degree>
+    <degree 
+      certification="COURSERA décembre 2018" 
+      link="https://www.coursera.org/account/accomplishments/verify/WGLPBYLZJPEX">
+      Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
+    </degree>
+    <degree 
+      certification="COURSERA décembre 2018" 
+      link="https://www.coursera.org/account/accomplishments/verify/JPE5VJNTQATF">
+      Neural Networks and Deep Learning
+    </degree>
+    <degree 
+      certification="COURSERA décembre 2018" 
+      link="https://www.coursera.org/account/accomplishments/verify/67XCS8VLPWD5">
+      Structuring Machine Learning Projects
+    </degree>
+    <degree 
+      certification="COURSERA décembre 2018" 
+      link="https://www.coursera.org/account/accomplishments/verify/AV7G2L3THZGM">
+      Machine Learning
+    </degree>
+    <degree certification="France Université Numérique juin 2015">
+      Fondamentaux pour le Big Data
+    </degree>
+  </education>
+
   <work>
     <company>Dilicom</company>
-    <logo>DILICOM.jpg</logo>
-    <title>Respnsable projet et support EDI/numérique</title>
+    <logo>logo_dilicom.png</logo>
+    <title>Responsable projet et support EDI/numérique</title>
     <start>2019</start>
     <mission>
-      <title>Opérateur de dématérialisation du secteur du livre - Dilifac</title>
-      <detail>
-          Maîtrise d'ouvrage, déploiements et support.
-      </detail>
+      <title>Dilifac (Opérateur de dématérialisation du secteur du livre)</title>
+      <detail>Maîtrise d'ouvrage, déploiements et support.</detail>
     </mission>
     <mission>
-      <title>Projet Transport en île de France</title>
-      <detail>
-        Informatisation du flux retour.
-        Centralisation des suivis transport.
-      </detail>
+      <title>Projet EDI Transport en île-de-France</title>
+      <detail>Informatisation du flux retour.</detail>
+      <detail>Centralisation des suivis transport.</detail>
     </mission>
     <mission>
-      <title>Lecture numérique</title>
-      <detail>
-        Support des plateformes pour le grand public (HUB) et pour les bibliothèques de prêts (PNB).
-        Evangélisation des bibliothèques publiques de prêts.
-        Support de l'application mobile interne de lecture de livres numériques.
-      </detail>
+      <title>Plateforme de distribution de livres numériques</title>
+      <detail>Support des plateformes pour le grand public (HUB) et pour les bibliothèques de prêts (PNB).</detail>
+      <detail>Evangélisation des bibliothèques publiques de prêts.</detail>
+      <detail>Support de l'application mobile interne de lecture de livres numériques.</detail>
     </mission>
-
   </work>
 
   <work>
     <company>Groupe La Martinière</company>
-    <logo>LMG.jpg</logo>
+    <logo>logo_lmg.png</logo>
     <title>Chef de projets / Directeur technique</title>
     <start>2003</start>
     <end>2018</end>
     <mission>
       <title>Entrepôt décisionnel</title>
-      <detail>
-        Choix de solution, conception et réalisation de l'entrepôt décisionnel du groupe.
-        Refonte des rapports sous BO XI, formation des utilisateurs.
-      </detail>
+      <detail>Choix de solution, conception et réalisation de l'entrepôt décisionnel du groupe.</detail>
+      <detail>Refonte des rapports sous BO XI, formation des utilisateurs.</detail>
     </mission>
     <mission>
       <title>Réferentiel produit</title>
-      <detail>
-        Conception et développement de l'application en ASP.Net MVC.
-        Conception et développement des flux MS Biztalk.
-      </detail>
+      <detail>Conception et développement de l'application en ASP.Net MVC.</detail>
+      <detail>Conception et développement des flux MS Biztalk.</detail>
     </mission>
     <mission>
       <title>Intégration ERP</title>
-      <detail>
-        Spécification et développement des flux MS Biztalk. 
-        Coordination technique.
-      </detail>
+      <detail>Spécification et développement des flux MS Biztalk. </detail>
+      <detail>Coordination technique.</detail>
     </mission>
     <mission>
       <title>Transfert d'activité</title>
-      <detail>
-        Spécification et mise en place de flux temporaires (ventes, stocks, référentiels).
-        Spécification et mise en place de nouveaux flux (ventes, stocks).
-        Encadrement de prestataires.
-      </detail>
+      <detail>Spécification et mise en place de flux temporaires (ventes, stocks, référentiels).</detail>
+      <detail>Spécification et mise en place de nouveaux flux (ventes, stocks).</detail>
+      <detail>Encadrement de prestataires.</detail>
     </mission>
     <mission>
       <title>Gestion du portail B2B</title>
-      <detail>
-        Environ 750 utilisateurs actifs quotidiennement.
-        Maintenance évolutive, support et formation.
-      </detail>
+      <detail>Environ 750 utilisateurs actifs quotidiennement.</detail>
+      <detail>Maintenance évolutive, support et formation.</detail>
     </mission>
     <mission>
       <title>Informatisation des forces de ventes</title>
-      <detail>
-        Maintenance et modernisation de l'application nomade de prise de commandes.
-        Formation, réalisation de reportings opérationnels.
-      </detail>
+      <detail>Maintenance et modernisation de l'application nomade de prise de commandes.</detail>
+      <detail>Formation, réalisation de reportings opérationnels.</detail>
     </mission>
 
   </work>
 
   <work>
     <company>CMG</company>
-    <logo>CMG.jpg</logo>
+    <logo>logo_cmg.png</logo>
     <title>Ingénieur réalisation</title>
     <start>1998</start>
     <end>2003</end>
     <mission>
       <title>Cegetel</title>
-      <detail>
-        Support niveau 3 pour le Réseau Santé Sociale et les portails internet. 
-        Suivi du projet de gestion des sources et des déploiements avec CVS. Animation des formations à CVS.
-      </detail>
+      <detail>Support niveau 3 pour le Réseau Santé Sociale et les portails internet. </detail>
+      <detail>Suivi du projet de gestion des sources et des déploiements avec CVS. Animation des formations à CVS.</detail>
     </mission>
     <mission>
       <title>Editions du Seuil</title>
-      <detail>
-            Réalisation d'une base de données décisionnelle, et d'un portail internet de consultation en B2B.
-      </detail>
+      <detail>Réalisation d'une base de données décisionnelle, et d'un portail internet de consultation en B2B.</detail>
     </mission>
     <mission>
       <title>Direction générale des finances</title>
-      <detail>
-        Tutorat d'une équipe interne de 4 développeurs, aux outils de développements Oracle. 
-        Spécification et réalisation d'applications.
-      </detail>
+      <detail>Tutorat d'une équipe interne de 4 développeurs, aux outils de développements Oracle. </detail>
+      <detail>Spécification et réalisation d'applications.</detail>
     </mission>
     <mission>
       <title>Renault</title>
-      <detail>
-          Migration d'application sous Oracle Forms et Oracle Reports.
-      </detail>
+      <detail>Migration d'application sous Oracle Forms et Oracle Reports.</detail>
     </mission>
     <mission>
       <title>Groupe d'Etude et de Contrôle des Variétés et des Semences</title>
-      <detail>
-          Maintenance corrective et évolutive.
-      </detail>
+      <detail>Maintenance corrective et évolutive.</detail>
     </mission>
 
   </work>
 
   <work>
     <company>Unilog</company>
-    <logo>UNILOG.jpg</logo>
+    <logo>logo_unilog.png</logo>
     <title>Ingénieur réalisation</title>
     <start>1996</start>
     <end>1998</end>
     <mission>
       <title>Réalisation de plusieurs missions pour la banque BNP</title>
-      <detail>
-        Tierce maintenance applicative d'applications de reporting pour les centres de profits. 
-        Spécification d'une application de statistique pour le passage à l'Euro. 
-        Animation du points de suivi avec le client.
-      <detail>
+      <detail>Tierce maintenance applicative d'applications de reporting pour les centres de profits.</detail>
+      <detail>Spécification d'une application de statistique pour le passage à l'Euro.</detail> 
+      <detail>Animation du points de suivi avec le client.</detail>
     </mission>
   </work>
 
-  <skill>Javascript</skill>
-  <skill>Typescript</skill>
-  <skill>CSS</skill>
-  <skill>Svelte</skill>
-  <skill>Vue/Nuxt</skill>
-  <skill>go</skill>
-  <skill>C#</skill>
-  <skill>ASP.Net MVC</skill>
-  <skill>SQL</skill>
-  <skill>Docker</skill>
+  <skills title="Langues">
+    <skill level="100">Français</skill>
+    <skill level="80">Anglais</skill>
+  </skills>
+
+  <skills title="Méthodologie">
+    <skill level="90">Cycle en V</skill>
+    <skill level="80">Agile Scrum</skill>
+  </skills>
+
+  <skills title="Programmation">
+    <skill level="90">Javascript</skill>
+    <skill level="80">Typescript</skill>
+    <skill level="90">CSS</skill>
+    <skill level="80">Svelte</skill>
+    <skill level="90">Vue.js/Nuxt</skill>
+    <skill level="100">go</skill>
+    <skill level="60">python</skill>
+    <skill level="80">C#</skill>
+    <skill level="80">ASP.Net MVC</skill>
+    <skill level="100">SQL</skill>
+    <skill level="80">Microsoft Biztalk</skill>
+    <skill level="80">Microsoft SSIS</skill>
+    <skill level="100">XSLT</skill>
+  </skills>
+
+  <skills title="Bases de données">
+    <skill level="100">Oracle</skill>
+    <skill level="90">Microsoft Sql Server</skill>
+    <skill level="80">Mysql</skill>
+    <skill level="80">Postgres</skill>
+    <skill level="90">Sqlite</skill>
+  </skills>
+
+  <skills title="Reporting">
+    <skill level="100">Business Objects</skill>
+    <skill level="100">Microsoft SSRS</skill>
+    <skill level="80">Microsoft PowerBI</skill>
+    <skill level="80">Microsoft Excel</skill>
+  </skills>
+
+  <skills title="Système">
+    <skill level="90">Linux</skill>
+    <skill level="90">Windows</skill>
+    <skill level="80">Docker</skill>
+  </skills> 
 
   <project>
     <title>Checkitoo</title>
@@ -188,9 +254,9 @@
     <tech>xslt</tech>
     <tech>LaTeX</tech>
     <tech>docker</tech>
-    <tech>wordpress<tech>
+    <tech>wordpress</tech>
     <description>
-    Service de personnalisation de personnalisation et d'impression de livre.
+    Service de personnalisation et d'impression de livre.
     </description>
   </project>
 
@@ -198,7 +264,7 @@
     <title>Horizons Sahel</title>
     <tech>Wordpress</tech>
     <description>
-    Création du site web de l'ONG Horizon Sahel
+    Création du site web de l'ONG Horizon Sahel.
     </description>
   </project>
 
