@@ -5,8 +5,15 @@
   <initials>FM</initials>
   <location>Paris, France</location>
   <locationLink>https://www.google.com/maps/place/Paris</locationLink>
-  <summary>Développer fullstack polivalent</summary>
-  <about>As a Full Stack Engineer, I have successfully taken multiple products from 0 to 1. I lead teams effectively, ensuring an environment where people can do their best work. Currently, I work mostly with TypeScript, React, Node.js, and GraphQL. I have over 8 years of experience in working remotely with companies all around the world.</about>
+  <summary>Développeur fullstack polivalent</summary>
+  <about>Chef de projet informatique et développeur expérimenté, 
+         j'ai travaillé aussi bien en DSI qu'en société de service. 
+         Mon parcours inclut des responsabilités à la fois en maîtrise d'ouvrage et en maîtrise d'œuvre, mais mon cœur penche davantage vers le développement. 
+         Polyvalent, j'ai encadré des développeurs et conçu des solutions sur mesure. 
+         Doté d'une solide connaissance des outils informatiques, 
+         je maintiens une veille constante pour rester à jour avec les dernières avancées technologiques. 
+         Mon engagement envers la mise à jour régulière de mes compétences reflète ma volonté de rester au fait des évolutions du domaine informatique 
+         et de garantir des solutions actuelles et performantes.</about>
   <avatarUrl>https://avatars.githubusercontent.com/u/8004483?s=400&amp;u=7014329651664a0dbc42d28562a6519972b682b7&amp;v=4</avatarUrl>
   <personalWebSite>https://blog.trankilou.fr</personalWebSite>
 
@@ -16,8 +23,6 @@
     <social name="github" url="https://github.com/fabienmasson"/>
     <social name="linkedin" url="https://www.linkedin.com/in/fabien-masson-2122122b/?originalSubdomain=fr"/>
   </contact>
-
-
 
   <education>
     <school>ENSICA</school>
@@ -91,13 +96,12 @@
     <title>Responsable projet et support EDI/numérique</title>
     <start>2019</start>
     <mission>
-      <title>Dilifac (Opérateur de dématérialisation du secteur du livre)</title>
+      <title>Dilifac (Dématérialisation de factures)</title>
       <detail>Maîtrise d'ouvrage, déploiements et support.</detail>
     </mission>
     <mission>
       <title>Projet EDI Transport en île-de-France</title>
-      <detail>Informatisation du flux retour.</detail>
-      <detail>Centralisation des suivis transport.</detail>
+      <detail>Informatisation du flux retour, et centralisation des suivis transport.</detail>
     </mission>
     <mission>
       <title>Plateforme de distribution de livres numériques</title>

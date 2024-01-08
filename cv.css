@@ -1,6 +1,6 @@
 :root {
     --title-color: #333;
-    --main-color: #777;
+    --main-color: #999;
 }
 
 main {
@@ -174,7 +174,8 @@ div.projects {
         font-size: 90%;
     }
     body {
-        margin: 5mm 5mm 5mm 5mm;
+        box-decoration-break: clone;
+        padding: 5mm 5mm 5mm 5mm;
     }
     section {
         page-break-inside: avoid;
