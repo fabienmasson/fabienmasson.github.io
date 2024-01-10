@@ -173,7 +173,7 @@
   <xsl:for-each select="degree">
     <p class="smaller">
         <xsl:value-of select="."/>
-        <xsl:if test="@certification">
+        <xsl:if test="@certification or @link">
         <xsl:choose>
             <xsl:when test="@link">
                 <xsl:text> (</xsl:text>
