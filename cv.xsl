@@ -177,8 +177,10 @@
         <xsl:choose>
             <xsl:when test="@link">
                 <xsl:text> (</xsl:text>
-                <xsl:value-of select="@certification"/>
-                <xsl:text> </xsl:text>
+                <xsl:if test="@certification">
+                    <xsl:value-of select="@certification"/>
+                    <xsl:text> </xsl:text>
+                </xsl:if>
                 <a target="_blank">
                     <xsl:attribute name="href">
                     <xsl:value-of select="@link"/>
