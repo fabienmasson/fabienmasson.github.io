@@ -1,3 +1,6 @@
+
+Inspired by  https://github.com/BartoszJarocki/cv by with 236 lines of xslt.
+
 ## Browser support
 
 You can open the XML file directly.
