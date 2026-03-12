@@ -4,9 +4,13 @@ import (
 	"bytes"
 	"fmt"
 	"html/template"
+	"os"
+	"path/filepath"
 	"regexp"
+	"sort"
 	"strings"
 	"time"
+	"unicode"
 )
 
 type Post struct {
@@ -19,6 +23,19 @@ type Post struct {
 	RawContent  string
 }
 
+var (
+	reCodeSpan      = regexp.MustCompile("`([^`]+)`")
+	reBoldItalic    = regexp.MustCompile(`\*\*\*(.+?)\*\*\*`)
+	reBold          = regexp.MustCompile(`\*\*(.+?)\*\*`)
+	reItalic        = regexp.MustCompile(`\*(.+?)\*`)
+	reStrikethrough = regexp.MustCompile(`~~(.+?)~~`)
+	reLink          = regexp.MustCompile(`\[([^\]]+)\]\(([^)]+)\)`)
+	reImage         = regexp.MustCompile(`!\[([^\]]*)\]\(([^)]+)\)`)
+	reHR            = regexp.MustCompile(`^(\-{3,}|\*{3,}|_{3,})$`)
+	reUL            = regexp.MustCompile(`^[\-\*\+] `)
+	reOL            = regexp.MustCompile(`^\d+\. `)
+)
+
 // ─────────────────────────────────────────────
 //  Markdown parser (zero dependencies)
 // ─────────────────────────────────────────────
@@ -30,6 +47,37 @@ func parseMarkdown(src string) template.HTML {
 	inUL := false
 	inOL := false
 	inBlockquote := false
+	inPara := false
+	var paraBuf strings.Builder
+
+	inlineFormat := func(s string) string {
+		// Code spans
+		s = reCodeSpan.ReplaceAllString(s, "<code>$1</code>")
+		// Bold + italic
+		s = reBoldItalic.ReplaceAllString(s, "<strong><em>$1</em></strong>")
+		// Bold
+		s = reBold.ReplaceAllString(s, "<strong>$1</strong>")
+		// Italic
+		s = reItalic.ReplaceAllString(s, "<em>$1</em>")
+		// Strikethrough
+		s = reStrikethrough.ReplaceAllString(s, "<del>$1</del>")
+		// Links
+		s = reLink.ReplaceAllString(s, `<a href="$2">$1</a>`)
+		// Images
+		s = reImage.ReplaceAllString(s, `<img src="$2" alt="$1">`)
+		return s
+	}
+
+	flushPara := func() {
+		if inPara {
+			content := strings.TrimSpace(paraBuf.String())
+			if content != "" {
+				buf.WriteString("<p>" + inlineFormat(template.HTMLEscapeString(content)) + "</p>\n")
+			}
+			paraBuf.Reset()
+			inPara = false
+		}
+	}
 
 	closeList := func() {
 		if inUL {
@@ -49,27 +97,10 @@ func parseMarkdown(src string) template.HTML {
 		}
 	}
 
-	inlineFormat := func(s string) string {
-		// Code spans
-		s = regexp.MustCompile("`([^`]+)`").ReplaceAllString(s, "<code>$1</code>")
-		// Bold + italic
-		s = regexp.MustCompile(`\*\*\*(.+?)\*\*\*`).ReplaceAllString(s, "<strong><em>$1</em></strong>")
-		// Bold
-		s = regexp.MustCompile(`\*\*(.+?)\*\*`).ReplaceAllString(s, "<strong>$1</strong>")
-		// Italic
-		s = regexp.MustCompile(`\*(.+?)\*`).ReplaceAllString(s, "<em>$1</em>")
-		// Strikethrough
-		s = regexp.MustCompile(`~~(.+?)~~`).ReplaceAllString(s, "<del>$1</del>")
-		// Links
-		s = regexp.MustCompile(`\[([^\]]+)\]\(([^)]+)\)`).ReplaceAllString(s, `<a href="$2">$1</a>`)
-		// Images
-		s = regexp.MustCompile(`!\[([^\]]*)\]\(([^)]+)\)`).ReplaceAllString(s, `<img src="$2" alt="$1">`)
-		return s
-	}
-
 	for _, line := range lines {
 		// Fenced code blocks
 		if strings.HasPrefix(line, "```") {
+			flushPara()
 			if inCode {
 				buf.WriteString("</code></pre>\n")
 				inCode = false
@@ -92,7 +123,8 @@ func parseMarkdown(src string) template.HTML {
 		}
 
 		// Horizontal rule
-		if regexp.MustCompile(`^(\-{3,}|\*{3,}|_{3,})$`).MatchString(strings.TrimSpace(line)) {
+		if reHR.MatchString(strings.TrimSpace(line)) {
+			flushPara()
 			closeList()
 			closeBlockquote()
 			buf.WriteString("<hr>\n")
@@ -101,6 +133,7 @@ func parseMarkdown(src string) template.HTML {
 
 		// Blockquote
 		if strings.HasPrefix(line, "> ") {
+			flushPara()
 			closeList()
 			if !inBlockquote {
 				buf.WriteString("<blockquote>\n")
@@ -112,39 +145,43 @@ func parseMarkdown(src string) template.HTML {
 		closeBlockquote()
 
 		// Headings
-		if strings.HasPrefix(line, "###### ") {
-			closeList()
-			buf.WriteString("<h6>" + inlineFormat(template.HTMLEscapeString(line[7:])) + "</h6>\n")
-			continue
-		}
-		if strings.HasPrefix(line, "##### ") {
-			closeList()
-			buf.WriteString("<h5>" + inlineFormat(template.HTMLEscapeString(line[6:])) + "</h5>\n")
-			continue
-		}
-		if strings.HasPrefix(line, "#### ") {
-			closeList()
-			buf.WriteString("<h4>" + inlineFormat(template.HTMLEscapeString(line[5:])) + "</h4>\n")
-			continue
-		}
-		if strings.HasPrefix(line, "### ") {
-			closeList()
-			buf.WriteString("<h3>" + inlineFormat(template.HTMLEscapeString(line[4:])) + "</h3>\n")
-			continue
-		}
-		if strings.HasPrefix(line, "## ") {
-			closeList()
-			buf.WriteString("<h2>" + inlineFormat(template.HTMLEscapeString(line[3:])) + "</h2>\n")
-			continue
-		}
-		if strings.HasPrefix(line, "# ") {
-			closeList()
-			buf.WriteString("<h1>" + inlineFormat(template.HTMLEscapeString(line[2:])) + "</h1>\n")
-			continue
+		if strings.HasPrefix(line, "#") {
+			flushPara()
+			if strings.HasPrefix(line, "###### ") {
+				closeList()
+				buf.WriteString("<h6>" + inlineFormat(template.HTMLEscapeString(line[7:])) + "</h6>\n")
+				continue
+			}
+			if strings.HasPrefix(line, "##### ") {
+				closeList()
+				buf.WriteString("<h5>" + inlineFormat(template.HTMLEscapeString(line[6:])) + "</h5>\n")
+				continue
+			}
+			if strings.HasPrefix(line, "#### ") {
+				closeList()
+				buf.WriteString("<h4>" + inlineFormat(template.HTMLEscapeString(line[5:])) + "</h4>\n")
+				continue
+			}
+			if strings.HasPrefix(line, "### ") {
+				closeList()
+				buf.WriteString("<h3>" + inlineFormat(template.HTMLEscapeString(line[4:])) + "</h3>\n")
+				continue
+			}
+			if strings.HasPrefix(line, "## ") {
+				closeList()
+				buf.WriteString("<h2>" + inlineFormat(template.HTMLEscapeString(line[3:])) + "</h2>\n")
+				continue
+			}
+			if strings.HasPrefix(line, "# ") {
+				closeList()
+				buf.WriteString("<h1>" + inlineFormat(template.HTMLEscapeString(line[2:])) + "</h1>\n")
+				continue
+			}
 		}
 
 		// Unordered list
-		if regexp.MustCompile(`^[\-\*\+] `).MatchString(line) {
+		if reUL.MatchString(line) {
+			flushPara()
 			closeBlockquote()
 			if !inUL {
 				if inOL {
@@ -159,7 +196,8 @@ func parseMarkdown(src string) template.HTML {
 		}
 
 		// Ordered list
-		if regexp.MustCompile(`^\d+\. `).MatchString(line) {
+		if reOL.MatchString(line) {
+			flushPara()
 			closeBlockquote()
 			if !inOL {
 				if inUL {
@@ -178,13 +216,19 @@ func parseMarkdown(src string) template.HTML {
 
 		// Empty line → paragraph break
 		if strings.TrimSpace(line) == "" {
+			flushPara()
 			buf.WriteString("\n")
 			continue
 		}
 
-		buf.WriteString("<p>" + inlineFormat(template.HTMLEscapeString(line)) + "</p>\n")
+		if inPara {
+			paraBuf.WriteString(" ")
+		}
+		paraBuf.WriteString(line)
+		inPara = true
 	}
 
+	flushPara()
 	closeList()
 	closeBlockquote()
 	if inCode {
@@ -217,6 +261,83 @@ func parseFrontMatter(content string) (map[string]string, string) {
 		}
 	}
 	return meta, strings.TrimSpace(body)
+}
+
+// ─────────────────────────────────────────────
+//  Slug helper
+// ─────────────────────────────────────────────
+
+func slugify(s string) string {
+	s = strings.ToLower(s)
+	var b strings.Builder
+	for _, r := range s {
+		if unicode.IsLetter(r) || unicode.IsDigit(r) {
+			b.WriteRune(r)
+		} else {
+			b.WriteRune('-')
+		}
+	}
+	slug := regexp.MustCompile(`-+`).ReplaceAllString(b.String(), "-")
+	return strings.Trim(slug, "-")
+}
+
+// ─────────────────────────────────────────────
+//  Post loader
+// ─────────────────────────────────────────────
+
+func loadPosts(dir string) ([]Post, error) {
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		return nil, fmt.Errorf("reading posts dir: %w", err)
+	}
+	var posts []Post
+	for _, e := range entries {
+		if e.IsDir() || !strings.HasSuffix(e.Name(), ".md") {
+			continue
+		}
+		data, err := os.ReadFile(filepath.Join(dir, e.Name()))
+		if err != nil {
+			continue
+		}
+		meta, body := parseFrontMatter(string(data))
+
+		title := meta["title"]
+		if title == "" {
+			title = strings.TrimSuffix(e.Name(), ".md")
+		}
+		slug := meta["slug"]
+		if slug == "" {
+			slug = slugify(strings.TrimSuffix(e.Name(), ".md"))
+		}
+		desc := meta["description"]
+
+		var tags []string
+		if t := meta["tags"]; t != "" {
+			for _, tag := range strings.Split(t, ",") {
+				tags = append(tags, strings.TrimSpace(tag))
+			}
+		}
+
+		var date time.Time
+		if d := meta["date"]; d != "" {
+			date, _ = time.Parse("2006-01-02", d)
+		}
+
+		posts = append(posts, Post{
+			Title:       title,
+			Slug:        slug,
+			Date:        date,
+			Description: desc,
+			Tags:        tags,
+			Content:     parseMarkdown(body),
+			RawContent:  body,
+		})
+	}
+
+	sort.Slice(posts, func(i, j int) bool {
+		return posts[i].Date.After(posts[j].Date)
+	})
+	return posts, nil
 }
 
 const baseCSS = `
@@ -588,4 +709,13 @@ const postTmpl = `
 
 func main() {
 	fmt.Println("SSG Build Started")
+	posts, err := loadPosts("posts")
+	if err != nil {
+		fmt.Printf("Error loading posts: %v\n", err)
+		return
+	}
+	fmt.Printf("Loaded %d posts\n", len(posts))
+	if len(posts) > 0 {
+		fmt.Printf("First post: %s (%s)\n", posts[0].Title, posts[0].Date.Format("2006-01-02"))
+	}
 }
