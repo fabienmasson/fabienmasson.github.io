@@ -23,6 +23,14 @@ type Post struct {
 	RawContent  string
 }
 
+type PageData struct {
+	SiteName  string
+	PageTitle string
+	MetaDesc  string
+	Year      int
+	Body      template.HTML
+}
+
 var (
 	reCodeSpan      = regexp.MustCompile("`([^`]+)`")
 	reBoldItalic    = regexp.MustCompile(`\*\*\*(.+?)\*\*\*`)
@@ -721,15 +729,74 @@ const postTmpl = `
   <div class="prose">{{.Post.Content}}</div>
 </article>`
 
+func renderToFile(filePath, tmplString string, data any, title, desc string) error {
+	t, err := template.New("content").Parse(tmplString)
+	if err != nil {
+		return fmt.Errorf("parsing content template: %w", err)
+	}
+	var buf bytes.Buffer
+	if err := t.Execute(&buf, data); err != nil {
+		return fmt.Errorf("executing content template: %w", err)
+	}
+
+	pd := PageData{
+		SiteName:  "Mon Blog & CV",
+		PageTitle: title,
+		MetaDesc:  desc,
+		Year:      time.Now().Year(),
+		Body:      template.HTML(buf.String()),
+	}
+
+	lt, err := template.New("layout").Parse(layoutTmpl)
+	if err != nil {
+		return fmt.Errorf("parsing layout template: %w", err)
+	}
+
+	f, err := os.Create(filePath)
+	if err != nil {
+		return fmt.Errorf("creating file: %w", err)
+	}
+	defer f.Close()
+
+	if err := lt.Execute(f, pd); err != nil {
+		return fmt.Errorf("executing layout: %w", err)
+	}
+	return nil
+}
+
 func main() {
 	fmt.Println("SSG Build Started")
+
 	posts, err := loadPosts("posts")
 	if err != nil {
 		fmt.Printf("Error loading posts: %v\n", err)
-		return
+		os.Exit(1)
 	}
-	fmt.Printf("Loaded %d posts\n", len(posts))
-	if len(posts) > 0 {
-		fmt.Printf("First post: %s (%s)\n", posts[0].Title, posts[0].Date.Format("2006-01-02"))
+
+	// Create static directory
+	if err := os.MkdirAll("static", 0755); err != nil {
+		fmt.Printf("Error creating static dir: %v\n", err)
+		os.Exit(1)
 	}
+
+	// 1. Render Index
+	err = renderToFile("index.html", indexTmpl, struct{ Posts []Post }{posts}, "Accueil", "Mon portfolio et blog personnel")
+	if err != nil {
+		fmt.Printf("Error rendering index: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Println("Generated: index.html")
+
+	// 2. Render Posts
+	for _, p := range posts {
+		outputPath := filepath.Join("static", p.Slug+".html")
+		err = renderToFile(outputPath, postTmpl, struct{ Post Post }{p}, p.Title, p.Description)
+		if err != nil {
+			fmt.Printf("Error rendering post %s: %v\n", p.Slug, err)
+			continue
+		}
+		fmt.Printf("Generated: %s\n", outputPath)
+	}
+
+	fmt.Printf("Build Complete (%d posts)\n", len(posts))
 }
