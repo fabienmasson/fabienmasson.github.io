@@ -3,6 +3,8 @@
     --main-color: #999;
 }
 
+
+
 main {
     font-family: monospace;
     max-width: 720px;
@@ -165,7 +167,7 @@ div.projects .tag {
 
 @page {
     size: A4;
-    margin: 10mm 0 10mm 0 ;
+    margin: 10mm 15mm;
     @bottom-center {
         content: counter(page) ' / ' counter(pages);
     }
@@ -173,10 +175,12 @@ div.projects .tag {
 
 @media print {
     html, body {
-        max-width: auto;
-        width: 210mm;
-        height: 297mm;
-        font-size: 90%;
+        max-width: none;
+        font-size: 80%;
+    }
+    main {
+        max-width: none;
+        margin: 0;
     }
     body {
         box-decoration-break: clone;

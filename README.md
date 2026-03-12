@@ -16,7 +16,7 @@ xsltproc cv.xsl fabien.xml > index.html
 
 Install weasyprint (https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation)
 ```
-weasyprint index.html /mnt/c/temp/cv.pdf
+weasyprint index.html cv.pdf
 ```
 
 
