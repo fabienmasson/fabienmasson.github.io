@@ -9,14 +9,14 @@ The `<?xml-stylesheet type="text/xsl" href="cv.xsl"?>` element allow the browser
 ## Generate HTML
 
 ```
-xsltproc cv.xsl fabien.xml > index.html
+xsltproc cv.xsl fabien.xml > cv.html
 ``` 
 
 ## Generate PDF
 
 Install weasyprint (https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation)
 ```
-weasyprint index.html cv.pdf
+weasyprint index.html cv2026.pdf
 ```
 
 
