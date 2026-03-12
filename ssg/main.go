@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"html/template"
+	"regexp"
+	"strings"
 	"time"
 )
 
@@ -14,6 +17,206 @@ type Post struct {
 	Tags        []string
 	Content     template.HTML
 	RawContent  string
+}
+
+// ─────────────────────────────────────────────
+//  Markdown parser (zero dependencies)
+// ─────────────────────────────────────────────
+
+func parseMarkdown(src string) template.HTML {
+	lines := strings.Split(src, "\n")
+	var buf bytes.Buffer
+	inCode := false
+	inUL := false
+	inOL := false
+	inBlockquote := false
+
+	closeList := func() {
+		if inUL {
+			buf.WriteString("</ul>\n")
+			inUL = false
+		}
+		if inOL {
+			buf.WriteString("</ol>\n")
+			inOL = false
+		}
+	}
+
+	closeBlockquote := func() {
+		if inBlockquote {
+			buf.WriteString("</blockquote>\n")
+			inBlockquote = false
+		}
+	}
+
+	inlineFormat := func(s string) string {
+		// Code spans
+		s = regexp.MustCompile("`([^`]+)`").ReplaceAllString(s, "<code>$1</code>")
+		// Bold + italic
+		s = regexp.MustCompile(`\*\*\*(.+?)\*\*\*`).ReplaceAllString(s, "<strong><em>$1</em></strong>")
+		// Bold
+		s = regexp.MustCompile(`\*\*(.+?)\*\*`).ReplaceAllString(s, "<strong>$1</strong>")
+		// Italic
+		s = regexp.MustCompile(`\*(.+?)\*`).ReplaceAllString(s, "<em>$1</em>")
+		// Strikethrough
+		s = regexp.MustCompile(`~~(.+?)~~`).ReplaceAllString(s, "<del>$1</del>")
+		// Links
+		s = regexp.MustCompile(`\[([^\]]+)\]\(([^)]+)\)`).ReplaceAllString(s, `<a href="$2">$1</a>`)
+		// Images
+		s = regexp.MustCompile(`!\[([^\]]*)\]\(([^)]+)\)`).ReplaceAllString(s, `<img src="$2" alt="$1">`)
+		return s
+	}
+
+	for _, line := range lines {
+		// Fenced code blocks
+		if strings.HasPrefix(line, "```") {
+			if inCode {
+				buf.WriteString("</code></pre>\n")
+				inCode = false
+			} else {
+				closeList()
+				closeBlockquote()
+				lang := strings.TrimPrefix(line, "```")
+				if lang != "" {
+					buf.WriteString(fmt.Sprintf(`<pre><code class="language-%s">`, template.HTMLEscapeString(lang)))
+				} else {
+					buf.WriteString("<pre><code>")
+				}
+				inCode = true
+			}
+			continue
+		}
+		if inCode {
+			buf.WriteString(template.HTMLEscapeString(line) + "\n")
+			continue
+		}
+
+		// Horizontal rule
+		if regexp.MustCompile(`^(\-{3,}|\*{3,}|_{3,})$`).MatchString(strings.TrimSpace(line)) {
+			closeList()
+			closeBlockquote()
+			buf.WriteString("<hr>\n")
+			continue
+		}
+
+		// Blockquote
+		if strings.HasPrefix(line, "> ") {
+			closeList()
+			if !inBlockquote {
+				buf.WriteString("<blockquote>\n")
+				inBlockquote = true
+			}
+			buf.WriteString("<p>" + inlineFormat(template.HTMLEscapeString(line[2:])) + "</p>\n")
+			continue
+		}
+		closeBlockquote()
+
+		// Headings
+		if strings.HasPrefix(line, "###### ") {
+			closeList()
+			buf.WriteString("<h6>" + inlineFormat(template.HTMLEscapeString(line[7:])) + "</h6>\n")
+			continue
+		}
+		if strings.HasPrefix(line, "##### ") {
+			closeList()
+			buf.WriteString("<h5>" + inlineFormat(template.HTMLEscapeString(line[6:])) + "</h5>\n")
+			continue
+		}
+		if strings.HasPrefix(line, "#### ") {
+			closeList()
+			buf.WriteString("<h4>" + inlineFormat(template.HTMLEscapeString(line[5:])) + "</h4>\n")
+			continue
+		}
+		if strings.HasPrefix(line, "### ") {
+			closeList()
+			buf.WriteString("<h3>" + inlineFormat(template.HTMLEscapeString(line[4:])) + "</h3>\n")
+			continue
+		}
+		if strings.HasPrefix(line, "## ") {
+			closeList()
+			buf.WriteString("<h2>" + inlineFormat(template.HTMLEscapeString(line[3:])) + "</h2>\n")
+			continue
+		}
+		if strings.HasPrefix(line, "# ") {
+			closeList()
+			buf.WriteString("<h1>" + inlineFormat(template.HTMLEscapeString(line[2:])) + "</h1>\n")
+			continue
+		}
+
+		// Unordered list
+		if regexp.MustCompile(`^[\-\*\+] `).MatchString(line) {
+			closeBlockquote()
+			if !inUL {
+				if inOL {
+					buf.WriteString("</ol>\n")
+					inOL = false
+				}
+				buf.WriteString("<ul>\n")
+				inUL = true
+			}
+			buf.WriteString("<li>" + inlineFormat(template.HTMLEscapeString(line[2:])) + "</li>\n")
+			continue
+		}
+
+		// Ordered list
+		if regexp.MustCompile(`^\d+\. `).MatchString(line) {
+			closeBlockquote()
+			if !inOL {
+				if inUL {
+					buf.WriteString("</ul>\n")
+					inUL = false
+				}
+				buf.WriteString("<ol>\n")
+				inOL = true
+			}
+			idx := strings.Index(line, ". ")
+			buf.WriteString("<li>" + inlineFormat(template.HTMLEscapeString(line[idx+2:])) + "</li>\n")
+			continue
+		}
+
+		closeList()
+
+		// Empty line → paragraph break
+		if strings.TrimSpace(line) == "" {
+			buf.WriteString("\n")
+			continue
+		}
+
+		buf.WriteString("<p>" + inlineFormat(template.HTMLEscapeString(line)) + "</p>\n")
+	}
+
+	closeList()
+	closeBlockquote()
+	if inCode {
+		buf.WriteString("</code></pre>\n")
+	}
+
+	return template.HTML(buf.String())
+}
+
+// ─────────────────────────────────────────────
+//  Front-matter parser
+// ─────────────────────────────────────────────
+
+func parseFrontMatter(content string) (map[string]string, string) {
+	meta := map[string]string{}
+	if !strings.HasPrefix(content, "---") {
+		return meta, content
+	}
+	rest := content[3:]
+	end := strings.Index(rest, "\n---")
+	if end == -1 {
+		return meta, content
+	}
+	front := rest[:end]
+	body := rest[end+4:]
+	for _, line := range strings.Split(front, "\n") {
+		parts := strings.SplitN(line, ":", 2)
+		if len(parts) == 2 {
+			meta[strings.TrimSpace(parts[0])] = strings.TrimSpace(parts[1])
+		}
+	}
+	return meta, strings.TrimSpace(body)
 }
 
 const baseCSS = `
