@@ -78,6 +78,26 @@ func TestParseMarkdown(t *testing.T) {
 			input: "[Google](https://google.com)",
 			want:  template.HTML("<p><a href=\"https://google.com\">Google</a></p>\n"),
 		},
+		{
+			name:  "Paragraph wrapping",
+			input: "Line 1\nLine 2",
+			want:  template.HTML("<p>Line 1 Line 2</p>\n"),
+		},
+		{
+			name:  "Horizontal rule",
+			input: "---",
+			want:  template.HTML("<hr>\n"),
+		},
+		{
+			name:  "Horizontal rule with stars",
+			input: "***",
+			want:  template.HTML("<hr>\n"),
+		},
+		{
+			name:  "Horizontal rule with underscores",
+			input: "___",
+			want:  template.HTML("<hr>\n"),
+		},
 	}
 
 	for _, tt := range tests {
