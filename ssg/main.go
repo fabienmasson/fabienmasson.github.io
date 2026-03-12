@@ -31,6 +31,8 @@ type PageData struct {
 	Body      template.HTML
 }
 
+const SiteName = "Mon Blog & CV"
+
 var (
 	reCodeSpan      = regexp.MustCompile("`([^`]+)`")
 	reBoldItalic    = regexp.MustCompile(`\*\*\*(.+?)\*\*\*`)
@@ -43,6 +45,11 @@ var (
 	reUL            = regexp.MustCompile(`^[\-\*\+] `)
 	reOL            = regexp.MustCompile(`^\d+\. `)
 	reSlug          = regexp.MustCompile(`-+`)
+
+	// Templates
+	tmplLayout = template.Must(template.New("layout").Parse(layoutTmpl))
+	tmplIndex  = template.Must(template.New("index").Parse(indexTmpl))
+	tmplPost   = template.Must(template.New("post").Parse(postTmpl))
 )
 
 // ─────────────────────────────────────────────
@@ -729,37 +736,32 @@ const postTmpl = `
   <div class="prose">{{.Post.Content}}</div>
 </article>`
 
-func renderToFile(filePath, tmplString string, data any, title, desc string) error {
-	t, err := template.New("content").Parse(tmplString)
-	if err != nil {
-		return fmt.Errorf("parsing content template: %w", err)
-	}
+func renderToFile(filePath string, t *template.Template, data any, title, desc string) error {
 	var buf bytes.Buffer
 	if err := t.Execute(&buf, data); err != nil {
 		return fmt.Errorf("executing content template: %w", err)
 	}
 
 	pd := PageData{
-		SiteName:  "Mon Blog & CV",
+		SiteName:  SiteName,
 		PageTitle: title,
 		MetaDesc:  desc,
 		Year:      time.Now().Year(),
 		Body:      template.HTML(buf.String()),
 	}
 
-	lt, err := template.New("layout").Parse(layoutTmpl)
-	if err != nil {
-		return fmt.Errorf("parsing layout template: %w", err)
-	}
-
 	f, err := os.Create(filePath)
 	if err != nil {
 		return fmt.Errorf("creating file: %w", err)
 	}
-	defer f.Close()
 
-	if err := lt.Execute(f, pd); err != nil {
+	if err := tmplLayout.Execute(f, pd); err != nil {
+		f.Close()
 		return fmt.Errorf("executing layout: %w", err)
+	}
+
+	if err := f.Close(); err != nil {
+		return fmt.Errorf("closing file: %w", err)
 	}
 	return nil
 }
@@ -780,22 +782,20 @@ func main() {
 	}
 
 	// 1. Render Index
-	err = renderToFile("index.html", indexTmpl, struct{ Posts []Post }{posts}, "Accueil", "Mon portfolio et blog personnel")
+	err = renderToFile("index.html", tmplIndex, struct{ Posts []Post }{posts}, "Accueil", "Mon portfolio et blog personnel")
 	if err != nil {
 		fmt.Printf("Error rendering index: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Println("Generated: index.html")
 
 	// 2. Render Posts
 	for _, p := range posts {
 		outputPath := filepath.Join("static", p.Slug+".html")
-		err = renderToFile(outputPath, postTmpl, struct{ Post Post }{p}, p.Title, p.Description)
+		err = renderToFile(outputPath, tmplPost, struct{ Post Post }{p}, p.Title, p.Description)
 		if err != nil {
 			fmt.Printf("Error rendering post %s: %v\n", p.Slug, err)
 			continue
 		}
-		fmt.Printf("Generated: %s\n", outputPath)
 	}
 
 	fmt.Printf("Build Complete (%d posts)\n", len(posts))
