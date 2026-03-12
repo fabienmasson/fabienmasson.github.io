@@ -47,6 +47,28 @@ Body content`,
 	}
 }
 
+func TestSlugify(t *testing.T) {
+	tests := []struct {
+		name  string
+		input string
+		want  string
+	}{
+		{"Basic", "Hello World", "hello-world"},
+		{"Special chars", "Hello, World!", "hello-world"},
+		{"Multiple spaces", "Hello   World", "hello-world"},
+		{"Accents (Current behavior)", "L'été arrive", "l-été-arrive"},
+		{"Leading/Trailing", "  Hello World  ", "hello-world"},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := slugify(tt.input); got != tt.want {
+				t.Errorf("slugify() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
 func TestParseMarkdown(t *testing.T) {
 	tests := []struct {
 		name  string

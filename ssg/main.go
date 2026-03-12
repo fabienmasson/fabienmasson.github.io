@@ -34,6 +34,7 @@ var (
 	reHR            = regexp.MustCompile(`^(\-{3,}|\*{3,}|_{3,})$`)
 	reUL            = regexp.MustCompile(`^[\-\*\+] `)
 	reOL            = regexp.MustCompile(`^\d+\. `)
+	reSlug          = regexp.MustCompile(`-+`)
 )
 
 // ─────────────────────────────────────────────
@@ -277,7 +278,7 @@ func slugify(s string) string {
 			b.WriteRune('-')
 		}
 	}
-	slug := regexp.MustCompile(`-+`).ReplaceAllString(b.String(), "-")
+	slug := reSlug.ReplaceAllString(b.String(), "-")
 	return strings.Trim(slug, "-")
 }
 
@@ -295,8 +296,10 @@ func loadPosts(dir string) ([]Post, error) {
 		if e.IsDir() || !strings.HasSuffix(e.Name(), ".md") {
 			continue
 		}
-		data, err := os.ReadFile(filepath.Join(dir, e.Name()))
+		path := filepath.Join(dir, e.Name())
+		data, err := os.ReadFile(path)
 		if err != nil {
+			fmt.Fprintf(os.Stderr, "Warning: failed to read %s: %v\n", path, err)
 			continue
 		}
 		meta, body := parseFrontMatter(string(data))
@@ -320,7 +323,18 @@ func loadPosts(dir string) ([]Post, error) {
 
 		var date time.Time
 		if d := meta["date"]; d != "" {
-			date, _ = time.Parse("2006-01-02", d)
+			var err error
+			date, err = time.Parse("2006-01-02", d)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "Warning: invalid date format in %s: %v\n", path, err)
+				if info, err := e.Info(); err == nil {
+					date = info.ModTime()
+				}
+			}
+		} else {
+			if info, err := e.Info(); err == nil {
+				date = info.ModTime()
+			}
 		}
 
 		posts = append(posts, Post{
