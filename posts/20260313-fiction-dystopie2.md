@@ -1,6 +1,6 @@
 ---
 title: Le Dernier Souvenir
-date: 2026-03-11
+date: 2026-03-13
 description: Histoire de LLM (auteur: Qwen 3.5 9B)
 tags: fiction
 ---
