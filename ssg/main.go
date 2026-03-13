@@ -39,6 +39,7 @@ type PageData struct {
 }
 
 type IndexData struct {
+	PageHeading string
 	Posts       []Post
 	CurrentPage int
 	TotalPages  int
@@ -62,9 +63,12 @@ var (
 	reSlug          = regexp.MustCompile(`-+`)
 
 	// Templates
-	tmplLayout = template.Must(template.New("layout").Parse(layoutTmpl))
-	tmplIndex  = template.Must(template.New("index").Parse(indexTmpl))
-	tmplPost   = template.Must(template.New("post").Parse(postTmpl))
+	funcMap = template.FuncMap{
+		"slugify": slugify,
+	}
+	tmplLayout = template.Must(template.New("layout").Funcs(funcMap).Parse(layoutTmpl))
+	tmplIndex  = template.Must(template.New("index").Funcs(funcMap).Parse(indexTmpl))
+	tmplPost   = template.Must(template.New("post").Funcs(funcMap).Parse(postTmpl))
 )
 
 // ─────────────────────────────────────────────
@@ -738,6 +742,7 @@ const layoutTmpl = `<!DOCTYPE html>
 </html>`
 
 const indexTmpl = `
+{{if .PageHeading}}<h1 class="page-heading">{{.PageHeading}}</h1>{{end}}
 {{if .Posts}}
 <ul class="post-list">
   {{range $i, $p := .Posts}}
@@ -751,7 +756,7 @@ const indexTmpl = `
       {{if $p.Description}}<p class="post-description">{{$p.Description}}</p>{{end}}
       {{if $p.Tags}}
       <div class="tags">
-        {{range $p.Tags}}<span class="tag">{{.}}</span>{{end}}
+        {{range $p.Tags}}<a href="/static/tag-{{slugify .}}.html" class="tag">{{.}}</a>{{end}}
       </div>
       {{end}}
     </div>
@@ -794,7 +799,7 @@ const postTmpl = `
     <div class="post-meta">
       <time>{{.Post.Date.Format "2 January 2006"}}</time>
       {{if .Post.Tags}}<span class="sep">·</span>
-      <div class="tags">{{range .Post.Tags}}<span class="tag">{{.}}</span>{{end}}</div>
+      <div class="tags">{{range .Post.Tags}}<a href="/static/tag-{{slugify .}}.html" class="tag">{{.}}</a>{{end}}</div>
       {{end}}
     </div>
     <h1 class="post-title">{{.Post.Title}}</h1>
