@@ -832,10 +832,51 @@ func main() {
 	}
 
 	// 1. Render Index
-	err = renderToFile("index.html", tmplIndex, struct{ Posts []Post }{posts}, "Accueil", "Mon portfolio et blog personnel")
-	if err != nil {
-		fmt.Printf("Error rendering index: %v\n", err)
-		os.Exit(1)
+	const postsPerPage = 10
+	totalPosts := len(posts)
+	totalPages := (totalPosts + postsPerPage - 1) / postsPerPage
+
+	if totalPosts == 0 {
+		totalPages = 1
+	}
+
+	for i := 0; i < totalPages; i++ {
+		start := i * postsPerPage
+		end := start + postsPerPage
+		if end > totalPosts {
+			end = totalPosts
+		}
+
+		pagePosts := posts[start:end]
+		pageNum := i + 1
+
+		var fileName string
+		if pageNum == 1 {
+			fileName = "index.html"
+		} else {
+			fileName = filepath.Join("static", fmt.Sprintf("page-%d.html", pageNum))
+		}
+
+		data := IndexData{
+			Posts:       pagePosts,
+			CurrentPage: pageNum,
+			TotalPages:  totalPages,
+		}
+		if pageNum > 1 {
+			if pageNum == 2 {
+				data.PrevPage = "/index.html"
+			} else {
+				data.PrevPage = fmt.Sprintf("/static/page-%d.html", pageNum-1)
+			}
+		}
+		if pageNum < totalPages {
+			data.NextPage = fmt.Sprintf("/static/page-%d.html", pageNum+1)
+		}
+
+		err = renderToFile(fileName, tmplIndex, data, "Articles", "Mon blog")
+		if err != nil {
+			fmt.Printf("Error rendering page %d: %v\n", pageNum, err)
+		}
 	}
 
 	// 2. Render Posts
