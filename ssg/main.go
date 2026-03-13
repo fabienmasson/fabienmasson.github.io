@@ -840,5 +840,17 @@ func main() {
 		}
 	}
 
-	fmt.Printf("Build Complete (%d posts)\n", len(posts))
+	// 3. Render Static Pages
+	pages, _ := loadPages("pages")
+	for _, p := range pages {
+		outputPath := filepath.Join("static", p.Slug+".html")
+		// Reuse tmplPost by casting Page to Post
+		err = renderToFile(outputPath, tmplPost, struct{ Post Post }{Post: Post{Title: p.Title, Content: p.Content, Date: time.Now()}}, p.Title, "")
+		if err != nil {
+			fmt.Printf("Error rendering page %s: %v\n", p.Slug, err)
+			continue
+		}
+	}
+
+	fmt.Printf("Build Complete (%d posts, %d pages)\n", len(posts), len(pages))
 }
