@@ -840,6 +840,80 @@ func renderToFile(filePath string, t *template.Template, data any, title, desc s
 	return nil
 }
 
+func renderPaginatedIndex(posts []Post, filePrefix, title, desc, heading string) error {
+	const postsPerPage = 10
+	totalPosts := len(posts)
+	totalPages := (totalPosts + postsPerPage - 1) / postsPerPage
+	if totalPosts == 0 {
+		totalPages = 1
+	}
+
+	for i := 0; i < totalPages; i++ {
+		start := i * postsPerPage
+		end := start + postsPerPage
+		if end > totalPosts {
+			end = totalPosts
+		}
+
+		pagePosts := posts[start:end]
+		pageNum := i + 1
+
+		var fileName string
+		if filePrefix == "" { // Main index
+			if pageNum == 1 {
+				fileName = "index.html"
+			} else {
+				fileName = filepath.Join("static", fmt.Sprintf("page-%d.html", pageNum))
+			}
+		} else { // Tag pages
+			if pageNum == 1 {
+				fileName = filepath.Join("static", fmt.Sprintf("%s.html", filePrefix))
+			} else {
+				fileName = filepath.Join("static", fmt.Sprintf("%s-page-%d.html", filePrefix, pageNum))
+			}
+		}
+
+		data := IndexData{
+			Posts:       pagePosts,
+			CurrentPage: pageNum,
+			TotalPages:  totalPages,
+			PageHeading: heading,
+		}
+
+		// Prev Link
+		if pageNum > 1 {
+			if filePrefix == "" {
+				if pageNum == 2 {
+					data.PrevPage = "/index.html"
+				} else {
+					data.PrevPage = fmt.Sprintf("/static/page-%d.html", pageNum-1)
+				}
+			} else {
+				if pageNum == 2 {
+					data.PrevPage = fmt.Sprintf("/static/%s.html", filePrefix)
+				} else {
+					data.PrevPage = fmt.Sprintf("/static/%s-page-%d.html", filePrefix, pageNum-1)
+				}
+			}
+		}
+
+		// Next Link
+		if pageNum < totalPages {
+			if filePrefix == "" {
+				data.NextPage = fmt.Sprintf("/static/page-%d.html", pageNum+1)
+			} else {
+				data.NextPage = fmt.Sprintf("/static/%s-page-%d.html", filePrefix, pageNum+1)
+			}
+		}
+
+		err := renderToFile(fileName, tmplIndex, data, title, desc)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 func main() {
 	fmt.Println("SSG Build Started")
 
