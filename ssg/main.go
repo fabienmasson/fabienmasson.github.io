@@ -38,6 +38,14 @@ type PageData struct {
 	Body      template.HTML
 }
 
+type IndexData struct {
+	Posts       []Post
+	CurrentPage int
+	TotalPages  int
+	PrevPage    string
+	NextPage    string
+}
+
 const SiteName = "F4N"
 
 var (
