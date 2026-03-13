@@ -5,7 +5,7 @@ description: Histoire de LLM (auteur: Qwen 3.5 9B)
 tags: fiction
 ---
 
-2035. Paris. Le ciel est d'un bleu synthétique parfait, calibré pour maximiser la production de sérotonine des citadins.
+An 2035. Paris. Le ciel est d'un bleu synthétique parfait, calibré pour maximiser la production de sérotonine des citadins.
 
 Elie travaillait dans un entrepôt souterrain. Son titre officiel était « Opérateur Logistique Niveau 1 ». En réalité, il était un trieur. Sa journée consistait à attraper des paquets qui glissaient sur des tapis roulants, à les peser, et à les orienter vers un convoyeur. L'IA, « OMEGA », gérait tout. Elle savait où chaque colis allait, comment l'optimiser, quand le livrer. Elie n'avait qu'à poser ses mains. Pas de pensée, pas de décision. Juste du muscle et de la routine.
 
