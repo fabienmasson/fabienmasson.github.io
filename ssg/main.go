@@ -39,7 +39,7 @@ type PageData struct {
 }
 
 type IndexData struct {
-	PageHeading string
+	PageHeading template.HTML
 	Posts       []Post
 	CurrentPage int
 	TotalPages  int
@@ -840,7 +840,7 @@ func renderToFile(filePath string, t *template.Template, data any, title, desc s
 	return nil
 }
 
-func renderPaginatedIndex(posts []Post, filePrefix, title, desc, heading string) error {
+func renderPaginatedIndex(posts []Post, filePrefix, title, desc string, heading template.HTML) error {
 	const postsPerPage = 10
 	totalPosts := len(posts)
 	totalPages := (totalPosts + postsPerPage - 1) / postsPerPage
@@ -945,7 +945,7 @@ func main() {
 	}
 	for tag, tagPosts := range tagMap {
 		slug := "tag-" + slugify(tag)
-		heading := fmt.Sprintf("Articles avec le tag: <em>%s</em>", tag)
+		heading := template.HTML(fmt.Sprintf("Articles avec le tag: <em>%s</em>", tag))
 		err = renderPaginatedIndex(tagPosts, slug, "Tag: "+tag, "Articles taggués avec "+tag, heading)
 		if err != nil {
 			fmt.Printf("Error rendering tag page %s: %v\n", tag, err)
