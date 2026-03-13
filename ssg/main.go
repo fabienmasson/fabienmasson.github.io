@@ -758,6 +758,25 @@ const indexTmpl = `
   </li>
   {{end}}
 </ul>
+
+{{if gt .TotalPages 1}}
+<div class="pagination" style="display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+  <div>
+    {{if .PrevPage}}
+    <a href="{{.PrevPage}}" class="tag" style="text-transform: none;">&lt;&lt; Précédent</a>
+    {{end}}
+  </div>
+  <div style="font-size: 0.8rem; color: var(--ink-2); font-weight: 500;">
+    Page {{.CurrentPage}} sur {{.TotalPages}}
+  </div>
+  <div>
+    {{if .NextPage}}
+    <a href="{{.NextPage}}" class="tag" style="text-transform: none;">Suivant &gt;&gt;</a>
+    {{end}}
+  </div>
+</div>
+{{end}}
+
 {{else}}
 <div class="empty">
   <h2>Aucun article pour l'instant</h2>
