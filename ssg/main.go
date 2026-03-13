@@ -31,7 +31,7 @@ type PageData struct {
 	Body      template.HTML
 }
 
-const SiteName = "Mon Blog & CV"
+const SiteName = "F4N"
 
 var (
 	reCodeSpan      = regexp.MustCompile("`([^`]+)`")
@@ -677,6 +677,7 @@ const layoutTmpl = `<!DOCTYPE html>
       <a class="site-title" href="/index.html">{{.SiteName}}</a>
       <nav>
         <a href="/index.html">Articles</a>
+        <a href="/static/about.html">A propos</a>
       </nav>
     </div>
   </header>
