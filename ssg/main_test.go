@@ -2,7 +2,10 @@ package main
 
 import (
 	"html/template"
+	"os"
+	"path/filepath"
 	"reflect"
+	"strings"
 	"testing"
 )
 
@@ -129,5 +132,42 @@ func TestParseMarkdown(t *testing.T) {
 				t.Errorf("parseMarkdown() = %v, want %v", got, tt.want)
 			}
 		})
+	}
+}
+
+func TestLoadPages(t *testing.T) {
+	tmpDir, err := os.MkdirTemp("", "ssg-pages-test")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer os.RemoveAll(tmpDir)
+
+	content := `---
+title: About Me
+slug: about
+---
+This is the about page.`
+	if err := os.WriteFile(filepath.Join(tmpDir, "about.md"), []byte(content), 0644); err != nil {
+		t.Fatal(err)
+	}
+
+	pages, err := loadPages(tmpDir)
+	if err != nil {
+		t.Fatalf("loadPages() error = %v", err)
+	}
+
+	if len(pages) != 1 {
+		t.Fatalf("expected 1 page, got %d", len(pages))
+	}
+
+	p := pages[0]
+	if p.Title != "About Me" {
+		t.Errorf("expected Title 'About Me', got %q", p.Title)
+	}
+	if p.Slug != "about" {
+		t.Errorf("expected Slug 'about', got %q", p.Slug)
+	}
+	if !strings.Contains(string(p.Content), "This is the about page.") {
+		t.Errorf("Content doesn't contain expected body: %q", p.Content)
 	}
 }

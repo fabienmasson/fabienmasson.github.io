@@ -23,6 +23,13 @@ type Post struct {
 	RawContent  string
 }
 
+type Page struct {
+	Title      string
+	Slug       string
+	Content    template.HTML
+	RawContent string
+}
+
 type PageData struct {
 	SiteName  string
 	PageTitle string
@@ -367,6 +374,40 @@ func loadPosts(dir string) ([]Post, error) {
 		return posts[i].Date.After(posts[j].Date)
 	})
 	return posts, nil
+}
+
+func loadPages(dir string) ([]Page, error) {
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		return nil, fmt.Errorf("reading pages dir: %w", err)
+	}
+	var pages []Page
+	for _, e := range entries {
+		if e.IsDir() || !strings.HasSuffix(e.Name(), ".md") {
+			continue
+		}
+		path := filepath.Join(dir, e.Name())
+		data, err := os.ReadFile(path)
+		if err != nil {
+			continue
+		}
+		meta, body := parseFrontMatter(string(data))
+		title := meta["title"]
+		if title == "" {
+			title = strings.TrimSuffix(e.Name(), ".md")
+		}
+		slug := meta["slug"]
+		if slug == "" {
+			slug = slugify(strings.TrimSuffix(e.Name(), ".md"))
+		}
+		pages = append(pages, Page{
+			Title:      title,
+			Slug:       slug,
+			Content:    parseMarkdown(body),
+			RawContent: body,
+		})
+	}
+	return pages, nil
 }
 
 const baseCSS = `
