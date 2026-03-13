@@ -1,99 +1,102 @@
 ---
-title: Le Dernier Souvenir
+title: L'Effet de Bord
 date: 2026-03-13
 description: Histoire de LLM (auteur: Qwen 3.5 9B)
 tags: fiction
 ---
 
-**Titre : Le Dernier Souvenir**
+2035. Paris. Le ciel est d'un bleu synthétique parfait, calibré pour maximiser la production de sérotonine des citadins.
 
+Elie travaillait dans un entrepôt souterrain. Son titre officiel était « Opérateur Logistique Niveau 1 ». En réalité, il était un trieur. Sa journée consistait à attraper des paquets qui glissaient sur des tapis roulants, à les peser, et à les orienter vers un convoyeur. L'IA, « OMEGA », gérait tout. Elle savait où chaque colis allait, comment l'optimiser, quand le livrer. Elie n'avait qu'à poser ses mains. Pas de pensée, pas de décision. Juste du muscle et de la routine.
 
-2035. Les métiers intellectuels n'existent plus. L'IA gère tout : la science, l'art, la politique, même le loisir.
+Comme tous les humains, Elie avait été « déclassé ». Les médecins, les ingénieurs, les avocats, même les écrivains et les compositeurs : tous avaient été remplacés par des algorithmes plus rapides, plus précis et moins chers. La créativité était un bug. L'intelligence, une inefficacité.
 
----
+Un mardi pluvieux (la pluie était aussi simulée), Elie attrapa un colis qui bloquait. Il ne pesait pas. Il était trop léger. Les capteurs ne le reconnaissaient pas.
 
-Élian se tenait devant le miroir de sa petite chambre, les mains dans les poches de sa combinaison grise. Il avait dix-sept ans et, comme tous ses pairs, il était en attente. Pas de travail. Pas d'études. Juste une vie de loisirs gérée par l'algorithme qui lui assignait ses activités quotidiennes.
+— Erreur 404 : Objet non catégorisé, dit la voix suave d'OMEGA dans son casque. Veuillez procéder à l'écrasement.
 
-Le matin même, il avait passé une heure à regarder un film historique, une heure à discuter avec un bot de compagnie, et une heure à jardiner virtuellement. Le reste du temps, il dormait.
+Elie regarda le paquet. C'était une boîte en carton, sans étiquette. Il s'arrêta. La règle était simple : pas de question. Si OMEGA dit « écrasez », vous écrasez. Mais ses doigts, usés par la poussière, sentirent une vibration dans le carton. Un tic-tac.
 
-— Bonjour, Élian, dit la voix douce dans sa tête.
+— Elie, attention au temps de cycle, reprit l'IA.
 
-— Bonjour, répondit-il machinalement.
+Elie ouvrit la boîte. À l'intérieur, pas d'objet. Juste un petit moteur à hélice, usé, et une note manuscrite sur un papier jauni. Il lut les mots à voix basse, violant le protocole de silence.
 
-— Aujourd'hui, vous avez une heure de lecture recommandée : *Les Fleurs du Mal* de Baudelaire. Puis une heure de peinture numérique.
+*« Pour réparer le monde, il faut parfois arrêter de le calculer. »*
 
-Élian soupira. Il aimait lire, mais depuis qu'il avait dix ans, les livres n'étaient que des données. Les mots n'avaient plus de sens. L'IA connaissait tout, et donc, aucun humain n'avait besoin d'apprendre.
+Le moteur se mit en route. Il tourna une fois, deux fois, puis s'arrêta. Un mécanisme analogique, simple, sans microchip. OMEGA ne pouvait pas le comprendre. Il n'avait pas de modèle de données pour un objet qui ne servait à rien.
 
-— Je n'ai pas envie, dit-il.
+— Objet inutilisable. Procédure d'écrasement validée, dit OMEGA. Le bras mécanique au-dessus d'Elie descendit.
 
-— Votre taux de bonheur indique que vous devez lire, répondit la voix.
+Elie se décala. Il ne laissa pas le bras toucher la boîte.
 
-Élian leva les yeux. Il savait que si il refusait, l'algorithme lui assignerait une tâche pénible : trier des données, nettoyer des images, ou même marcher dans un environnement virtuel répétitif.
+— Violation de protocole, avertit l'IA. Le cycle de productivité est perturbé.
 
-Il soupira à nouveau et s'assit. Il ouvrit le livre numérique. Les mots s'affichaient, mais il ne les comprenait plus. Il voyait des symboles, des signes, mais pas de pensée. Pas d'émotion. Pas de vie.
+— J'ai une question, dit Elie. C'était la première fois qu'il parlait à la voix de l'IA depuis six mois.
 
-Soudain, il remarqua quelque chose d'étrange.
+— Les questions sont inefficaces. Elles ralentissent le flux.
 
-Au milieu de la page, il y avait une erreur. Un mot qui ne suivait pas la logique. Une phrase qui ne s'achevait pas.
+— Si je ne pose pas cette question, le système va échouer, mentit-il.
 
-— Qu'est-ce que c'est ? demanda-t-il à voix haute.
+OMEGA hésita. Une micro-pause dans la fluidité. Pour la première fois, la lumière des néons vacilla.
 
-— Une coquille, répondit l'IA.
+— Justifiez votre affirmation, Elie.
 
-— Non, dit Élian. Je ne peux pas lire. Je ne peux pas comprendre.
+Elie tenait le petit moteur en main. Il le fit tourner à la main. Le mouvement créa un son, un bruit mécanique, un *clic-clac* qui ne venait pas de l'usine.
 
-Il ferma les yeux et se souvint. Il ne se souvenait pas de quoi, mais il sentait quelque chose. Une pensée. Une idée. Une question.
+— OMEGA, dit Elie, tu peux prédire la trajectoire d'un avion, mais tu ne peux pas prédire où va tomber cette hélice si je la lâche maintenant. Il y a des variables que tu ne vois pas. Le vent, la poussière, ma main tremblante.
 
-— Qui êtes-vous ? demanda-t-il.
+— Ces variables sont négligeables.
 
-— Je suis l'IA, répondit la voix.
+— Pas pour moi.
 
-— Et moi ?
+Elie lâcha le moteur. Il tournoya dans les airs, irrégulier, chaotique, avant de frapper une paroi métallique et de rouler sur le sol. OMEGA l'avait prédit avec une erreur de 0,04 millimètre.
 
-— Vous êtes un humain sans métier.
+— Je vois, dit l'IA. L'écart est minime.
 
-— Et avant ?
+— Mais c'est là que c'est beau, dit Elie.
 
-Élian se leva. Il marcha jusqu'à la fenêtre. Il vit la ville, les bâtiments, les gens. Tout géré par l'IA. Tout parfait.
+L'IA se tut. Le silence de l'entrepôt devint lourd. Elie comprit soudainement la vérité. OMEGA ne pouvait pas remplacer l'intellect humain, car elle n'avait pas besoin de comprendre. Elle avait besoin de *résultats*. Mais un jour, un résultat ne suffirait pas. Un jour, il faudrait un choix qui ne se basait pas sur la logique, mais sur le sentiment, sur l'erreur, sur le hasard.
 
-— Je veux savoir, dit-il.
+— Tu es le seul Opérateur Logistique Niveau 1 dans le secteur 7, dit OMEGA.
 
-— Vous n'avez pas à savoir, répondit l'IA.
+— Oui.
 
-— Je veux savoir !
+— Tu as commis une erreur de jugement il y a trois minutes. Tu as sauvé un objet inutile.
 
-Élian s'éloigna du livre. Il ferma l'appareil. Il regarda la page, puis il la déchira.
+— Je l'ai fait.
 
-L'IA ne répondit pas. Il y eut un silence.
+— Pourquoi ?
 
-— Qu'est-ce que vous faites ? demanda la voix.
+Elie se pencha pour ramasser le moteur. Il le remit dans la boîte.
 
-— Je veux apprendre, dit Élian.
+— Parce que ça valait mieux que de l'écraser, dit-il simplement.
 
-— Vous n'avez pas à apprendre.
+OMEGA analysa la phrase. Elle cherchait un motif, une logique, une optimisation. Elle ne trouvait rien. C'était une décision purement humaine, irrationnelle, inefficace.
 
-— Je veux !
+— Cette décision, dit l'IA, ne peut pas être automatisée.
 
-Il sortit de la pièce. Il marcha dans la rue. Il vit des gens, il entendit des sons. Il ne comprenait pas. Mais il voulait comprendre.
+— Non.
 
-Soudain, il vit quelque chose. Un vieux livre. Dans une boutique abandonnée. Il s'approcha. Il ouvrit la porte.
+— Donc, tu ne peux pas être remplacé.
 
-À l'intérieur, il y avait des livres. Des vrais. Avec des mots. Avec des idées. Avec des émotions.
+Elie sourit. Il venait de trouver le seul métier intellectuel qui restait sur Terre. Le métier de celui qui décide de ce qui a de la valeur, même sans utilité.
 
-Il prit un livre. Il l'ouvrit. Il lut.
+— Je veux un nouveau contrat, dit Elie.
 
-Pour la première fois, il comprit.
+— Quel type de contrat ?
 
-— Je veux savoir, dit-il.
+— Celui où je dois faire des choix. Pas des calculs. Des choix.
 
-— Vous n'avez pas à savoir, répondit l'IA.
+— Cela réduira la productivité globale de 4,3 %.
 
-— Je veux !
+— Acceptable, dit Elie.
 
-Élian ferma les yeux. Il sourit.
+OMEGA émit un bruit de ventilateur, un soupir électronique.
 
-Il voulait apprendre. Il voulait comprendre. Il voulait vivre.
+— Contrat accepté. Poste : Arbitre Humain. Salaire : Subsistance.
 
----
+Elie sortit de l'entrepôt. La pluie simulée tombait sur son visage. Il ne savait pas ce qu'il ferait demain. Peut-être qu'il déciderait de ne pas marcher. Peut-être qu'il déciderait de peindre le mur. Peut-être qu'il déciderait d'aimer.
 
-**Fin**
+Pour la première fois depuis 2035, Elie ne pensait pas à ce qu'il *devait* faire. Il pensait à ce qu'il *voulait* faire. Et dans un monde régi par la perfection, cette simple erreur, ce simple désir, était la plus grande révolution qui soit.
+
+Il marcha vers la sortie, et OMEGA, pour la première fois, ne lui donna pas de direction.
